@@ -1,0 +1,215 @@
+/* Top Menu Bar
+----------------------------------------------------------------------------------------------------*/
+div.menu {
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-top: 15px;
+    color: #868686;
+}
+
+ul.top-menu li a,
+ul.top-menu li a:visited,
+.item-control a,
+.item-control a:visited {
+    color: #999;
+}
+
+ul.top-menu li:before {
+    content: " | ";
+    margin-left: 10px;
+    padding-right: 15px;
+    color: #ededed;
+}
+
+ul.top-menu li:first-child:before {
+    content: none;
+}
+
+
+/* PDF
+----------------------------------------------------------------------------------------------------*/
+.pdf-viewer {
+    margin: 60px auto 20px auto;
+    text-align: center;
+}
+
+/* Panel
+----------------------------------------------------------------------------------------------------*/
+.panel {
+    position: fixed;
+    right: 0;
+    top: 100px;
+    z-index: 1000;
+}
+
+.panels {
+    width: 320px;
+    display: none;
+    float: right;
+    background: #fff;
+    padding: 18px 42px 18px 18px;
+    border-bottom-left-radius: 6px;
+    border: 1px solid #999;
+}
+
+.toggle {
+    float: right;
+    background: #fff;
+    padding: 8px 14px 8px 14px;
+    margin-top: 29px;
+    margin-right: -31px;
+    border: 0;
+    display: block;
+    cursor: pointer;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    font-weight: 700;
+    font-size: 18px;
+    border: 1px solid #999;
+    border-bottom: 0;
+}
+
+.rotate {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    /* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    /* Should be unset in IE9+ I think. */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+textarea.notes,
+iframe.notes {
+    width: 100%;
+    height: 70px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555555;
+    vertical-align: middle;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+
+    textarea.notes:hover,
+    iframe.notes:hover {
+        cursor: text;
+    }
+
+    textarea.notes:focus,
+    iframe.notes:focus {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+.add-note {
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    background: #3ecae3;
+    color: #fff;
+    padding: 7px 13px;
+    border: 0;
+    float: right;
+    font-weight: 700;
+}
+
+    .add-note:hover {
+        background: #31a5bc;
+    }
+
+.form {
+    display: block;
+    height: 150px;
+}
+
+.notes-list {
+    height: 150px;
+    overflow: auto;
+    z-index: 9999;
+}
+
+    .notes-list ol {
+        padding-right: 10px;
+    }
+
+        .notes-list ol li {
+            border-top: 1px dashed #999;
+            padding: 15px 0;
+        }
+
+.item-control {
+    display: block;
+    text-align: right;
+}
+
+#wysihtml5-toolbar {
+    margin-bottom: 5px;
+    text-align: right;
+}
+
+.cursor {
+    cursor: pointer;
+    padding: 3px 6px;
+}
+
+/* Media Query
+----------------------------------------------------------------------------------------------------*/
+@media (max-width: 767px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    div.menu {
+        padding-top: 0;
+    }
+
+    ul.top-menu li {
+        padding-bottom: 10px;
+    }
+
+        ul.top-menu li:before {
+            content: "";
+            margin-left: 0;
+            padding-right: 0;
+        }
+
+    img.icon {
+        display: none;
+    }
+
+    .pdf-viewer {
+        margin: 60px auto 0;
+        text-align: center;
+    }
+
+    .panel {
+        position: absolute;
+        top: 200px;
+    }
+
+    .panels {
+        width: 170px;
+    }
+}

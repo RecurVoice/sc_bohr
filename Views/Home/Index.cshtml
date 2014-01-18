@@ -1,0 +1,84 @@
+﻿@using MVP.WebUI
+@{
+    ViewBag.Title = "Welcome!";
+}
+      
+@section Style {           
+    @Styles.Render("~/home_css")
+}
+
+@section Menu {   
+      @Html.Partial("_LoginPartial")     
+}
+<!-- home tagline -->
+
+<div class="home-tagline" id="home-tagline">
+    <div class="row-fluid">
+        <div class="container">
+            <div class="span12">
+                <h1>Home</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- home -->
+
+<div class="home-sect" id="home-sect">
+    <br>
+    <br>
+    <div class="row-fluid">
+        <div class="container">
+            <div class="span3 offset3 anchor" data-url="/write" title="www.bohr.ac/write">
+                <div id="myPapers">
+                    <div id="myPapers-icon">
+                        <img src="~/content/images/bohr/myPapers-icon.png" alt="myPapers-icon" width="32" height="36" />
+                    </div>
+                    <h3>My Papers</h3>
+                    <p>Write papers</p>
+                    <button class="myPapers-btn">Go to My Papers</button>
+                </div>
+            </div>
+            <div class="span3 anchor" data-url="/read" title="www.bohr.ac/read">
+                <div id="myRefferences">
+                    <div id="myRefferences-icon">
+                        <img src="~/content/images/bohr/myRefferences-icon.png" alt="myPapers-icon" width="32" height="36" />
+                    </div>
+                    <h3>My References</h3>
+                    <p>Read literature</p>
+                    <button class="myRefferences-btn">Go to My References</button>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div> 
+@section Scripts{
+    <script>
+        /* Clickable DIV
+  ----------------------------------------------------------------------------------------------------*/
+        $("div.anchor").click(function () {
+            window.location = $(this).data("url");
+        });
+
+
+        /* Random DIV Background
+        ----------------------------------------------------------------------------------------------------*/
+        var imgCount = 3;
+        var dir = '/content/images/bohr/header/';
+        var randomCount = Math.round(Math.random() * (imgCount - 1)) + 1;
+        var images = new Array
+        images[1] = "banner1.jpg",
+        images[2] = "banner2.jpg",
+        images[3] = "banner3.jpg",
+    document.getElementById("home-sect").style.backgroundImage = "url(" + dir + images[randomCount] + ")";
+    </script>
+}

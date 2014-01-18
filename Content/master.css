@@ -1,0 +1,373 @@
+/* Style */
+body {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.brand {
+    position: absolute;
+    border-bottom: 3px solid #dbdbdb;
+    padding: 5px;
+    background-color: white;
+    -webkit-transition: all .25s;
+    -moz-transition: all .25s;
+    -ms-transition: all .25s;
+    -o-transition: all .25s;
+    transition: all .25s;
+}
+
+    .brand:hover {
+        margin-top: 10px;
+    }
+
+.navbar {
+    margin-bottom: 0px !important;
+}
+
+.navbar-inner {
+    border-right: none !important;
+    border-top: none !important;
+    border-bottom: 3px solid #dbdbdb !important;
+    background-image: none !important;
+    border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    -o-border-radius: 0px !important;
+    height: 70px;
+    background-color: white;
+}
+
+.nav.pull-right {
+    margin-top: 17px !important;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#description.description {
+    /*background: url(images/bohr/description.png) no-repeat;*/
+    background-size: cover;
+    background-color: #f6f6f6;
+    padding-top: 134px;
+    padding-bottom: 150px;
+    text-align: center;
+    /*color: white;*/
+}
+
+    #description.description h1 {
+        font-weight: normal;
+        font-size: 30px;
+    }
+    #description.description .img-descrpt {
+  margin-top: -54px;
+}
+
+    #description.description span {
+        font-size: 22px;
+        line-height: 85px;
+    }
+
+    #description.description .button {
+        margin-bottom: 35px;
+        margin-top: 20px;
+    }
+
+        #description.description .button a {
+            padding: 20px 30px 20px 30px;
+            border-radius: 10px;
+            color: white;
+        }
+
+            #description.description .button a.google {
+                background-color: #1c50e5;
+                margin-right: 10px;
+            }
+
+                #description.description .button a.google:hover {
+                    text-decoration: none;
+                    background-color: #1a4bd6;
+                }
+
+            #description.description .button a.dropbox {
+                background-color: #0ca0e5;
+            }
+
+                #description.description .button a.dropbox:hover {
+                    text-decoration: none;
+                    background-color: #0895d7;
+                }
+
+    #description.description p {
+        /*text-shadow: 1px 0px 3px #686868;*/
+    }
+
+#Features {
+    margin-top: 115px;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+    #Features header {
+        text-align: center;
+    }
+
+        #Features header h1 {
+            color: #232323;
+            font-size: 43px;
+            font-weight: normal;
+        }
+
+        #Features header span {
+            font-size: 22px;
+            color: #848484;
+            line-height: 40px;
+        }
+
+    #Features .track-progress {
+        height: 200px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+        #Features .track-progress h2 {
+            font-size: 28px;
+            color: #232323;
+            font-weight: bold;
+        }
+
+        #Features .track-progress p {
+            color: #848484;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 27px;
+        }
+
+    #Features .share-work {
+        margin-top: 0;
+        height: 200px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        background-color: #f6f6f6;
+    }
+
+        #Features .share-work h2 {
+            font-size: 28px;
+            color: #232323;
+            font-weight: bold;
+        }
+
+        #Features .share-work p {
+            color: #848484;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 27px;
+        }
+
+    #Features .relevant-information {
+        height: 200px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+        #Features .relevant-information h2 {
+            font-size: 28px;
+            color: #232323;
+            font-weight: bold;
+        }
+
+        #Features .relevant-information p {
+            color: #848484;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 27px;
+        }
+
+#univ ul li {
+    display: inline;
+    margin-left: 50px;
+}
+
+#univ {
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-color: #f6f6f6;
+}
+
+    #univ ul {
+        margin-top: 40px;
+    }
+
+    #univ h1 {
+        font-size: 37px;
+        color: #232323;
+        font-weight: normal;
+    }
+
+#call-to-act {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+    #call-to-act h1 {
+        font-weight: normal;
+        font-size: 45px;
+    }
+
+    #call-to-act span {
+        font-size: 22px;
+        line-height: 85px;
+    }
+
+    #call-to-act .button {
+        margin-bottom: 35px;
+        margin-top: 20px;
+    }
+
+        #call-to-act .button a {
+            padding: 20px 30px 20px 30px;
+            border-radius: 10px;
+            color: white;
+        }
+
+            #call-to-act .button a.google {
+                background-color: #1c50e5;
+                margin-right: 10px;
+            }
+
+                #call-to-act .button a.google:hover {
+                    text-decoration: none;
+                    background-color: #1a4bd6;
+                }
+
+            #call-to-act .button a.dropbox {
+                background-color: #0ca0e5;
+            }
+
+                #call-to-act .button a.dropbox:hover {
+                    text-decoration: none;
+                    background-color: #0895d7;
+                }
+
+footer {
+    height: 50px;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+    background-color: #2e2e2e;
+}
+
+    footer .copyright {
+        font-size: 12px;
+    }
+
+.go-top {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    display: none;
+}
+
+    .go-top:hover {
+        position: fixed;
+        bottom: 2em;
+        right: 2em;
+        background-color: white;
+        color: black;
+        padding: 10px;
+        text-decoration: none;
+        border: 1px solid black;
+    }
+/* Desktops and laptops ----------- */
+
+@media only screen and (min-width: 1200px) {
+    .navbar-inner .container {
+        width: 1170px !important;
+    }
+}
+
+@media (max-width: 979px) {
+    .nav-collapse,
+    .nav-collapse.collapse {
+        height: 0;
+        overflow: hidden;
+        background-color: white;
+        top: 70px;
+        width: 50%;
+        right: 0px;
+        position: absolute;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+
+    #Features .track-progress {
+        height: auto !important;
+        text-align: center;
+    }
+
+    #Features .share-work {
+        height: auto !important;
+        text-align: center;
+    }
+
+        #Features .share-work ul li {
+            list-style: none;
+        }
+
+    #Features .relevant-information {
+        height: auto !important;
+        text-align: center;
+    }
+
+    #univ ul li {
+        display: block;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 240px) {
+    .button a {
+        display: block;
+        margin-bottom: 10px;
+        width: 40%;
+        margin-left: 20%;
+    }
+}
+
+.about-us {
+    margin-top: 130px;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+    .about-us h1 {
+        font-size: 37px;
+        color: #232323;
+        font-weight: normal;
+    }
+
+    .about-us p {
+        color: #848484;
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 27px;
+    }
+
+.faq {
+    margin-top: 130px;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}

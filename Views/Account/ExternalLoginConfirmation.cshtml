@@ -1,0 +1,313 @@
+﻿@model MVP.WebUI.Models.RegisterExternalLoginModel
+@using MVP.WebUI.Models
+@{
+    ViewBag.Title = "Register";
+}
+
+@section Style {
+    @Styles.Render("~/m_buttons_css")
+    @Styles.Render("~/m_form_css")
+}
+
+<div class="form-tagline" id="form-tagline">
+    <div class="row-fluid">
+        <div class="container">
+            <div class="span12">
+                <h1>Welcome to Bohr</h1>
+                <p>Give yourself a head start!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form -->
+<div class="form-sect" id="form-sect">
+    <div class="row-fluid">
+        <div class="container">
+            <div class="span6 offset3">
+                @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal registration-form" }))
+                {
+                    @Html.HiddenFor(m => m.UserName)
+                    @Html.HiddenFor(m => m.Email)
+                    @Html.HiddenFor(m => m.ExternalLoginData)
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.Title, new { @class = "control-label academic-title" })
+                        <div class="controls">
+                            @Html.DropDownListFor(m => m.Title, SignUpLists.TitleList)
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.Affiliation, new { @class = "control-label affiliation" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Affiliation, new { placeholder = "Affiliation..." })
+                            @Html.ValidationMessageFor(m => m.Affiliation)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.UniversityEmail, new { @class = "control-label affiliation" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.UniversityEmail)
+                            @Html.ValidationMessageFor(m => m.UniversityEmail)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.Topics, new { @class = "control-label affiliation" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Topics, new { placeholder = "Topic 1, Topic 2" })
+                            @Html.ValidationMessageFor(m => m.Topics)
+                        </div>
+                        <div class="controls">
+
+                            <p class="help-block">
+                                Max 5 topic, separate each with
+                                <br>
+                                comma
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.ReferenceManager, new { @class = "control-label affiliation" })
+                        <div class="controls">
+                            @Html.DropDownListFor(m => m.ReferenceManager, SignUpLists.ReferenseManager)
+                        </div>
+                    </div>
+
+                    <!-- Hidden control groups -->
+
+                    <!-- Mendeley -->
+                    <div class="control-group references" id="Mendeley" style="display: none">
+                        <label class="control-label">Add your notes to Bohr</label>
+
+                        <div class="controls">
+                            <a class="m-btn blue rnd" data-toggle="modal" href="#mendeley-modal"><em class="icon-cloud-upload"></em>Upload</a>
+                        </div>
+                    </div>
+
+
+                    <!-- Zotero -->
+                    <div class="control-group references" id="Zotero" style="display: none">
+                        <label class="control-label">Add your notes to Bohr</label>
+
+                        <div class="controls">
+                            <a class="m-btn blue rnd" data-toggle="modal" href="#zotero-modal"><em class="icon-cloud-upload"></em>Upload</a>
+                        </div>
+                    </div>
+                    <!-- End hidden control group -->
+
+                    <!-- Mendeley Modal Box -->
+                    <div class="modal hide fade" id="mendeley-modal">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal" type="button">&times;</button>
+
+                            <h2>Add your notes: step by step guide</h2>
+
+                            <a href="#" class="btn ">skip this step <i class="icon-fast-forward"></i></a>
+                        </div>
+
+                        <div id="modal-mendeley-content" class="modal-body">
+                            <div class="accordion" id="accordion2">
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <span class="accordion-heading-title">1. Open your Reference manager</span> <a class="accordion-toggle" data-parent="#accordion2" data-toggle="collapse" href="#collapseMendeleyOne">Show me how</a>
+                                    </div>
+
+                                    <div class="accordion-body collapse" id="collapseMendeleyOne">
+                                        <div class="accordion-inner">
+                                            <img alt="dummy-image1" height="400" src="content/images/bohr/endnote1.png" width="600">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <span class="accordion-heading-title">2. Press CTRL + A</span> <a class="accordion-toggle" data-parent="#accordion2" data-toggle="collapse" href="#collapseMendeleyTwo">Show me how</a>
+                                    </div>
+
+                                    <div class="accordion-body collapse" id="collapseMendeleyTwo">
+                                        <div class="accordion-inner">
+                                            <img alt="dummy-image1" height="400" src="content/images/bohr/endnote2.png" width="600">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <span class="accordion-heading-title">3. Export as .XML</span> <a class="accordion-toggle" data-parent="#accordion2" data-toggle="collapse" href="#collapseMendeleyThree">Show me how</a>
+                                    </div>
+
+                                    <div class="accordion-body collapse" id="collapseMendeleyThree">
+                                        <div class="accordion-inner">
+                                            <img alt="dummy-image1" height="400" src="content/images/bohr/endnote3.png" width="600">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <span class="accordion-heading-title">4. Save and Upload this file</span> <a class="accordion-toggle" data-parent="#accordion2" data-toggle="collapse" href="#collapseMendeleyFour">Show me how</a>
+                                        &nbsp;
+                                        <a class="m-btn rnd green" href="javascript:;">
+                                            Browse
+                                            <input name="mendeleyFile" onchange="$("#upload-Mendeley-info").html($(this).val());" size="1" style="position: absolute; z-index: 9; height: 40px; top: 0; left: 0; filter: alpha(opacity=0); -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; opacity: 0; background-color: transparent; color: transparent;" type="file">
+                                        </a>
+                                        &nbsp;
+                                        <span class="label label-info" id="upload-Mendeley-info"></span>
+                                    </div>
+
+                                    <div class="accordion-body collapse" id="collapseMendeleyFour">
+                                        <div class="accordion-inner">
+                                            <img alt="dummy-image1" height="400" src="content/images/bohr/endnote4.png" width="600">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="modal-Mendeley-end">
+                                    <a class="m-btn blue rnd upload" data-dismiss="modal" href="javascript:void()"><em class="icon-cloud-upload"></em> Upload</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zotero Modal Box -->
+                    <div class="modal hide fade" id="zotero-modal">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal" type="button">&times;</button>
+
+                            <h2>Add your notes: step by step guide</h2>
+
+                            <a href="bohr.ac/signupform" class="btn ">skip this step <i class="icon-fast-forward"></i></a>
+                        </div>
+
+                        <div id="modal-zotero-content" class="modal-body">
+                            <div class="accordion" id="accordion3">
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <span class="accordion-heading-title">1. Open your Reference manager</span> <a class="accordion-toggle" data-parent="#accordion3" data-toggle="collapse" href="#collapseZoteroOne">Show me how</a>
+                                    </div>
+
+                                    <div class="accordion-body collapse" id="collapseZoteroOne">
+                                        <div class="accordion-inner">
+                                            <img alt="dummy-image1" height="400" src="content/images/bohr/zotero1.png" width="600">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <span class="accordion-heading-title">2. Press CTRL + A</span> <a class="accordion-toggle" data-parent="#accordion3" data-toggle="collapse" href="#collapseZoteroTwo">Show me how</a>
+                                    </div>
+
+                                    <div class="accordion-body collapse" id="collapseZoteroTwo">
+                                        <div class="accordion-inner">
+                                            <img alt="dummy-image1" height="400" src="content/images/bohr/zotero2.png" width="600">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <span class="accordion-heading-title">3. Right click and select Generate report from items (Step 1)</span> <a class="accordion-toggle" data-parent="#accordion3" data-toggle="collapse" href="#collapseZoteroThree">Show me how</a>
+                                    </div>
+
+                                    <div class="accordion-body collapse" id="collapseZoteroThree">
+                                        <div class="accordion-inner">
+                                            <img alt="dummy-image1" height="400" src="content/images/bohr/zotero3.png" width="600">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <span class="accordion-heading-title">4. Save this file as .XML (Step 2)</span> <a class="accordion-toggle" data-parent="#accordion3" data-toggle="collapse" href="#collapseZoteroFour">Show me how</a>
+                                    </div>
+
+                                    <div class="accordion-body collapse" id="collapseZoteroFour">
+                                        <div class="accordion-inner">
+                                            <img alt="dummy-image1" height="400" src="content/images/bohr/zotero4.png" width="600">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <span class="accordion-heading-title">5. Select .XML and All files (Step 3)</span> <a class="accordion-toggle" data-parent="#accordion3" data-toggle="collapse" href="#collapseZoteroFive">Show me how</a>
+                                    </div>
+
+                                    <div class="accordion-body collapse" id="collapseZoteroFive">
+                                        <div class="accordion-inner">
+                                            <img alt="dummy-image1" height="400" src="content/images/bohr/zotero5.png" width="600">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <span class="accordion-heading-title">6. Upload this file</span>
+                                        &nbsp;
+                                        <a class="m-btn rnd green" href="javascript:;">
+                                            Browse
+                                            <input name="zoteroFile" onchange="$("#upload-Zotero-info").html($(this).val());" size="1" style="position: absolute; z-index: 9; height: 40px; top: 0; left: 0; filter: alpha(opacity=0); -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; opacity: 0; background-color: transparent; color: transparent;" type="file">
+                                        </a>
+                                        &nbsp;
+                                        <span class="label label-info" id="upload-Zotero-info"></span>
+                                    </div>
+
+                                    <div class="accordion-body collapse" id="collapseZoteroSix">
+                                        <div class="accordion-inner">
+                                            <img alt="dummy-image1" height="400" src="content/images/bohr/endnote4.png" width="600">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="modal-Zotero-end">
+                                    <a class="m-btn blue rnd upload" data-dismiss="modal" href="javascript:void()"><em class="icon-cloud-upload"></em> Upload</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="m-btn red rnd next registration-form-click" type="button">Next</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+          /* Accordion toggle text change to Done
+        ----------------------------------------------------------------------------------------------------*/
+          //mixpanel.identify('san9mba@gmail.com');//$('button[type="submit"]').parents('form').children().first().val());
+          $('a.accordion-toggle').click(function () {
+              if ($(this).next('.accordion-body').hasClass('in')) {
+                  $(this).text('Show me how');
+              } else {
+                  $(this).text('Done');
+              }
+          });
+
+
+          /* Option Select
+          ----------------------------------------------------------------------------------------------------*/
+          $(document).ready(function () {
+              $('#ReferenceManager').change(function () {
+                  var location = $(this).val(),
+                  div = $('#' + location);
+
+                  $('div.references').hide();
+                  div.show();
+
+              });
+
+          });
+
+         
+    </script>
+}

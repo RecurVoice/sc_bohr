@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "Landing";
+}
+
+@section Menu {
+    @Html.Partial("_MenuPartial")
+}
+
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-43204770-1', 'bohr.ac');
+    ga('send', 'pageview');
+
+</script>
+<!--Google Analytics -->
+@*<head>
+    <link href="~/Content/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    </head>*@
+<body>
+
+
+    @*<div id="description" class="description">
+
+        <br>
+        <br>
+
+
+        <br>
+        <br>
+
+
+        <div class="row-fluid">
+            <div class="container">
+                <div class="span6">
+
+
+                    <img class="img-descrpt" src="img/responsive.png" alt="">
+
+                </div>
+
+                <div class="span6">
+
+                    <div class="home-descrpt">
+                        <h1>Write Your Best Academic Papers</h1>*@
+
+
+    <div id="description" class="description">
+        <br>
+        <br>
+
+
+        <br>
+        <br>
+
+        <div class="row-fluid">
+            <div class="container">
+                <div class="span6">
+                    <img class="img-descrpt" src="~//Content/images/bohr/header/responsive.png" alt="">
+                </div>
+                @*<br></br>*@
+                @*<br></br>*@
+                <div class="span6">
+                    <div class="home-descrpt">
+                        <h1>Write Your Best Academic Papers</h1>
+                        @*<font color="#E5E4E2	 "> Write Your Best Academic Papers </font>*@
+
+                        <span>Sign Up With </span>
+                        @Html.Partial("_SignUp")
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+                        <br>
+                        <br>
+                        <br>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div id="Features">
+
+        <div class="container">
+            <header>
+                <h1>All your info in one place</h1>
+                <span>Never worry about deadlines, versions and attachments again</span>
+            </header>
+        </div>
+        <!-- end of center -->
+
+        <div class="row-fluid">
+            <div class="container">
+                <div id="track-progress" class="track-progress">
+                    <div class="span3 img_track">
+                        <img src="~/content/images/bohr/track-progress.png" alt="">
+                    </div>
+                    <div class="span9">
+                        <h2>Track Your Progress</h2>
+                        <p>Follow up on your deadlines. Works with the tools you know and love. <br> Need to find a paper that you wrote a while ago? Bohr has it for you. </p>
+                    </div>
+                </div>
+            </div>
+            <!-- end of track progress -->
+        </div>
+
+        <div class="row-fluid">
+            <div id="share-work" class="share-work">
+                <div class="container">
+                    <div class="span9">
+                        <h2>Updates? Let the version control system handle it</h2>
+                        <p> Focus on your work, not on managing versions. Works with the tools you know and love. <br> The best part? You can share this with your co-authors. </p>
+                    </div>
+                    <!-- end of span9 share -->
+                    <div class="span3">
+                        <img src="~/content/images/bohr/share-work.png" alt="">
+                    </div>
+                </div>
+                <!-- end of container -->
+            </div>
+            <!-- end of share work -->
+        </div>
+        <!-- end of row fluid -->
+        <div class="row-fluid">
+            <div class="container">
+                <div id="relevant-information" class="relevant-information">
+                    <div class="span3">
+                        <img src="~/content/images/bohr/relevant-information.png" alt="">
+                    </div>
+                    <div class="span9">
+                        <h2> Receive Relevant Information </h2>
+                        <p>Found an interesting conference? Bohr will add relevant information automatically. <br> Attachments? Just add them, it is that simple <br> The more you use Bohr, the smarter it gets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of row fluid relevant information -->
+        <div class="row-fluid">
+            <div class="span12">
+                <div id="univ">
+                    <h1>Researchers from these Universities joined</h1>
+                    <ul>
+                        <li>
+                            <img src="~/content/images/bohr/harvard.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/content/images/bohr/barkeley.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/content/images/bohr/mit.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/content/images/bohr/stanford.png" alt="">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end of row fluid universities -->
+        <div class="row-fluid">
+            <div class="span12">
+                <div id="call-to-act">
+                    <h1>
+                        What Are You Waiting For ?
+                    </h1>
+                    <span>Sign Up With</span>
+                    <p class="button">
+                        <a class="google" href="/signupgoogle"><i class="icon-google-plus"></i> Google</a>
+                    </p>
+                    <p>
+                        Sign up/in with your account. By signing in you agree to our
+                        <br />
+                        <a href="/legalnotice">Terms of Service</a>
+                        and <a href="/privacypolicy">Privacy Policy.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- end of row callback -->
+
+
+    </div> <!-- end of features -->
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>$(document).ready(function () { $(window).scroll(function () { if ($(this).scrollTop() > 200) { $('.go-top').fadeIn(400); } else { $('.go-top').fadeOut(400); } }); $('.go-top').click(function (event) { event.preventDefault(); $('html, body').animate({ scrollTop: 0 }, 300); }) });</script>
+</body>
+</html>

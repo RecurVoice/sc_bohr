@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MVP.Core.Entities.Db.Paper>
+@using MVP.Core.Entities.Db;
+@using MVP.WebUI.Infrastructure.HtmlHelpers;
+
+@if (Model.Count() > 0)
+    {
+    @*  if (Model.FirstOrDefault().FinishedStatus)
+        {
+            @:<span style="float: left">Finished</span>
+        }
+        else
+        {
+            @:<span style="float: left">Active</span>
+        }
+    *@
+    <table class="table table-bordered mypaper-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Paper version </th>
+                <th>Deadline (click for info)</th>
+                @*<th>Finished</th>*@
+                <th>Last Edit</th>
+                <th>All related information</th>
+                <th>Team</th>
+                @*<th>Attachments</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @{int counter = 1;
+              string deadLineAbs;
+              string deadLineFull;}
+            @foreach (Paper paper in Model)
+        {
+            deadLineAbs = paper.DeadlineAbstractDate==null?"": paper.DeadlineAbstractDate.Value.ToString("dd.MM.yyyy");
+            deadLineFull =paper.DeadlineFullDate ==null?"":  paper.DeadlineFullDate.Value.ToString("dd.MM.yyyy");
+            var barDetails = Html.BarDetails(paper);
+            
+                <tr>
+                    <td>@counter</td>
+                    <td class="align-left ">
+                        @Html.ActionLink(paper.PaperName, "DownloadFile", "Home", new { id = paper.PaperFile.GDId }, null)
+                        <a href="#modal-revision" data-id="@paper.Id" data-toggle="modal" class="pull-right revision">Add new revision <span class="icon-plus"></span></a>
+                    </td>
+                    <td>
+                        <a class="@paper.PaperType.ToLower()-details" href="#modal-details" role="button" data-toggle="modal" data-id="@paper.Id" data-name="@paper.PaperName" data-website="@paper.Website" data-keywords="@paper.Tags" data-abstract="@deadLineAbs" data-fulldate="@deadLineFull" data-UserProfileId="@paper.UserProfileId">
+                            <div class="progress @barDetails.ProgressBarType bar">
+                                <div class="bar @barDetails.BarColor  " style="width: @barDetails.Persentage% ">@barDetails.ShowFullOrAbstractDate @barDetails.InscriptionOfProgressBar <span></span></div>
+                            </div>
+                        </a>
+                    </td>
+                    @*<td>@paper.FinishedStatus.ToString()</td>*@
+                    <td>@paper.LastEditDate.Value.ToString("dd.MM.yyyy")</td>
+                    @*<td><a class="btn btn-primary show-versions" href="#modal-review" role="button" data-toggle="modal" data-id="@paper.Id">Show</a></td>*@
+                    <td><a class="btn btn-primary show-review" href="#modal-review" role="button" data-toggle="modal" data-id="@paper.Id" data-review="@paper.Review">Show</a></td>
+                    <td><a class="btn btn-primary" href="javascript:void(0)">Share</a></td>
+                </tr>
+            counter = counter + 1;
+        }
+        </tbody>
+    </table>
+    }

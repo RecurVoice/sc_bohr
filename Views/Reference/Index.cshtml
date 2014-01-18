@@ -1,0 +1,326 @@
+﻿@model  MVP.WebUI.Models.ReferenceVM
+@using MVP.Core.Entities.Db;
+@{
+    ViewBag.Title = "References";
+}
+
+@section Style {
+    @Styles.Render("~/profile_css")
+    @Styles.Render("~/read_css")
+    @Styles.Render("~/styles_s_css")
+    @Styles.Render("~/m_styles_css")
+}
+
+@section Menu {
+    @Html.Partial("_MenuPartial2")
+}
+
+<header id="subhead">
+    <div class="container">
+        <h1>References</h1>
+        @using (Html.BeginForm("Index", "Reference", FormMethod.Get, new { id = "search" }))
+        {
+            <div class="input-append">
+                <input class="span2" id="inputIcon" name="search" type="text" placeholder="Search" value="@ViewBag.search">
+                <button class="add-on" type="submit"><i class=" icon-search"></i></button>
+                @*<span class="add-on"><i class="icon-search"></i></span>*@
+            </div>
+        }
+    </div>
+</header>
+
+<div id="content">
+
+    <div class="container">
+        <ul id="page-tab" class="nav nav-tabs">
+            <li class="active"><a href="#single-mode" data-toggle="tab">Individual Mode</a></li>
+            <li><a href="#team-mode" data-toggle="tab">Team Mode</a></li>
+        </ul>
+        <div id="single-mode" class="tab-pane active">
+
+            <div class="row">
+                <div class="span12 uploadbox">
+                    <a href="#modal-upload" data-toggle="modal" class="btn btn-large btn-primary">Upload File <span class="icon-upload"></span></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    <a href="#modal-newtopic" data-toggle="modal" class="btn btn-primary">Add New Topic   <span class="icon-file"></span></a>
+                </div>
+            </div>
+
+            @foreach (string topic in Model.Topics)
+            {
+                <div class="row">
+                    <div class="span12">
+                        <div class="span5">
+                            <h2>@topic</h2>
+                        </div>
+                        @if (Model.ReferenceIndividualList.Where(x => x.Topic == topic.Trim()).Count() > 0)
+                        {
+                            <table class="table table-bordered table-striped ref-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Read</th>
+                                        <th>Rate</th>
+                                        <th>Tags</th>
+                                        <th>Review</th>
+                                        <th>Share</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int counter = 1;}
+                                    @foreach (Reference reference in Model.ReferenceIndividualList.Where(x => x.Topic == topic.Trim()))
+                                    {
+                                        <tr>
+                                            <td>@counter</td>
+                                            <td class="align-left">@Html.ActionLink(reference.Name, "Details", "Reference", new { id = reference.Id }, null)</td>
+                                            <td>@Html.CheckBox("Read", reference.IsRead, new Dictionary<string, Object> { { "class", "isRead" }, { "data-id", reference.Id } })</td>
+                                            <td>
+                                                <div class="star" data-score="@reference.Rate" data-id="@reference.Id"></div>
+                                            </td>
+                                            <td>@Html.TextBox("Tags", reference.Tags, new Dictionary<string, Object> { { "class", "tags" }, { "data-id", reference.Id } })</td>
+                                            <td><a class="btn btn-small btn-primary show-review" href="#modal-review" role="button" data-toggle="modal" data-id="@reference.Id" data-abstract="@reference.Abstract">Show</a></td>
+                                            <td><a class="btn btn-small btn-primary show-share" href="#modal-share" role="button" data-toggle="modal" data-id="@reference.Id">Share</a></td>
+
+                                        </tr>
+                                        counter = counter + 1;
+                                    }
+
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                <div class="span12">
+                    <a href="#modal-newtopic" data-toggle="modal" class="btn btn-primary">Add New Topic   <span class="icon-file"></span></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12 uploadbox">
+                    <a href="#modal-upload" data-toggle="modal" class="btn btn-large btn-primary">Upload File <span class="icon-upload"></span></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="team-mode" class="tab-pane">
+
+            <div class="row">
+                <div class="span12">
+                    <h2>Sent to you</h2>
+                    @if (Model.ReferenceTeamList.Count() > 0)
+                    {
+                        <table class="table table-bordered table-striped refshare-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Read</th>
+                                    <th>Rate</th>
+                                    <th>Tags</th>
+                                    <th>Review</th>
+                                    <th>Share</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int counter = 1;}
+                                @foreach (Reference reference in Model.ReferenceTeamList)
+                                {
+                                    <tr>
+                                        <td>@counter</td>
+                                        <td class="align-left">@Html.ActionLink(reference.Name, "Details", "Reference", new { id = reference.Id }, null)</td>
+                                        <td>@Html.CheckBox("Read", reference.IsRead, new Dictionary<string, Object> { { "class", "isRead" }, { "data-id", reference.Id } })</td>
+                                        <td>
+                                            <div class="star" data-score="@reference.Rate" data-id="@reference.Id"></div>
+                                        </td>
+                                        <td>@Html.TextBox("Tags", reference.Tags, new Dictionary<string, Object> { { "class", "tags" }, { "data-id", reference.Id } })</td>
+                                        <td><a class="btn btn-small btn-primary show-review" href="#modal-review" role="button" data-toggle="modal" data-id="@reference.Id" data-abstract="@reference.Abstract">Show</a></td>
+                                        <td><a class="btn btn-small btn-primary show-share" href="#modal-share" role="button" data-toggle="modal" data-id="@reference.Id">Share</a></td>
+                                    </tr>
+                                    counter = counter + 1;
+                                }
+
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+
+            @* <div class="row">
+                    <div class="span12">
+                        <h2>Sent by you</h2>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Read</th>
+                                    <th>Rate</th>
+                                    <th>Tags</th>
+                                    <th>Review</th>
+                                    <th>Share</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="align-left"><a href="">Name of file number 1.pdf</a></td>
+                                    <td>
+                                        <input type="checkbox"></td>
+                                    <td>
+                                        <div class="rating"></div>
+                                    </td>
+                                    <td>
+                                        <input name="tags" class="tags" value="foo,bar,baz" /></td>
+                                    <td><a href="#modal-upload" data-toggle="modal" class="btn btn-small btn-primary">Show</a></td>
+                                    <td><a href="#modal-upload" data-toggle="modal" class="btn btn-small btn-primary">Share</a></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="align-left"><a href="">Name of file number 2.pdf</a></td>
+                                    <td>
+                                        <input type="checkbox"></td>
+                                    <td>
+                                        <div class="rating"></div>
+                                    </td>
+                                    <td>
+                                        <input name="tags" class="tags" value="foo,bar,baz" /></td>
+                                    <td><a href="#modal-upload" data-toggle="modal" class="btn btn-small btn-primary">Show</a></td>
+                                    <td><a href="#modal-upload" data-toggle="modal" class="btn btn-small btn-primary">Share</a></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td class="align-left"><a href="">Name of file number 3.pdf</a></td>
+                                    <td>
+                                        <input type="checkbox"></td>
+                                    <td>
+                                        <div class="rating"></div>
+                                    </td>
+                                    <td>
+                                        <input name="tags" class="tags" value="foo,bar,baz" /></td>
+                                    <td><a href="#modal-upload" data-toggle="modal" class="btn btn-small btn-primary">Show</a></td>
+                                    <td><a href="#modal-upload" data-toggle="modal" class="btn btn-small btn-primary">Share</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>*@
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+
+<div id="modal-share" class="modal hide fade">
+    @using (Html.BeginForm("ShareReferenceByMail", "Share", null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Share </h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            <label class="control-label Name" for="Email">Email</label>
+            <div class="controls">
+                <input type="hidden" class="referenceId" name="Id" value="" />
+                <input class="" id="Email" name="Email" data-val="true" data-val-email="Please enter the Email adress." data-val-required="The Email field is required." type="text" value="">
+                @Html.ValidationMessage("Email")
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Share</button>
+    </div>
+    }
+</div>
+
+<div id="modal-review" class="modal hide fade">
+    <form class="form-horizontal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalReviewLabel">Review</h3>
+        </div>
+        <div class="modal-body">
+            <div class="control-group single">
+                <label class="control-label" for="inputEmail">Your review</label>
+                <div class="controls">
+                    <input type="hidden" class="referenceId" name="Id" value="" />
+                    <textarea class="Abstract " name="Abstract" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn btn-primary" href="javascript:void()">Save </a>
+        </div>
+    </form>
+</div>
+
+<div id="modal-upload" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    @using (Html.BeginForm("UploadHandler", "Reference", null, FormMethod.Post, new { @class = "form-horizontal submit-upload-form", enctype = "multipart/form-data" }))
+    {
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myUploadLabel">Upload Files</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">Choose your files</label>
+            <div class="controls">
+                <input type="file" multiple="multiple" name="file" value="">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">Choose your topic</label>
+            <div class="controls">
+                <select name="topic" id="topic">
+                    @foreach (string topic in Model.Topics)
+                        {
+                        <option value="@topic">@topic</option>
+                        }
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-primary submit-upload-click" value="DONE">
+    </div>
+    }
+</div>
+
+<div id="modal-newtopic" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    @using (Html.BeginForm("AddNewTopic", "Reference", null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Add New Topic</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group single">
+            <label class="control-label" for="inputEmail">Choose your topic</label>
+            <div class="controls">
+                <input name="topicName" type="text" placeholder="Enter topic name...">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" value="ADD">
+    </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Datatable_scripts")
+    @Scripts.Render("~/FineUploader_scripts")
+    @Scripts.Render("~/TagsInput_scripts")
+    @Scripts.Render("~/Raty_scripts")
+    <script type="text/javascript" src="/Scripts/App/ReferenceIndex.js"></script>
+}

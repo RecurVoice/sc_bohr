@@ -1,0 +1,9 @@
+﻿@model  MVP.WebUI.Models.SendMail
+@{
+    ViewBag.Title = "SendSharedMail";
+    Layout = null;
+}
+<p>Hello,</p>
+<p>I want to share with you some reference(s). Please folow to  <a target="_blank" href="@Model.SharingLink">@Model.SharingLink</a> link to your dashboard.</p>
+<p>Bset Regards,</p>
+<p>@Model.Name</p>

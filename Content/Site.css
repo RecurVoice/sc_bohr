@@ -1,0 +1,178 @@
+﻿.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+#content {
+    margin-top: 50px;
+}
+
+.login-form {
+    margin-top: 250px;
+}
+
+.association-form {
+    margin: 0px;
+}
+
+    .association-form .field-validation-error {
+        display: none;
+    }
+
+    .association-form .validation-summary-errors {
+        color: #b94a48;
+        background-color: #f2dede;
+        border-color: #eed3d7;
+        padding: 16px 8px 8px 8px;
+        margin-bottom: 20px;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
+
+.input-append.date .add-on {
+    -webkit-border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+}
+
+/*Modal window*/
+
+.modal-custom.modal.fade.in {
+    top: 20%;
+}
+
+@media (min-height: 890px) and (max-height: 950px) {
+    .modal-custom.modal.fade.in {
+        top: 15%;
+    }
+}
+
+@media (min-height: 769px) and (max-height: 890px) {
+    .modal-custom.modal.fade.in {
+        top: 10%;
+    }
+}
+
+@media (max-height: 768px) {
+    .modal-custom.modal.fade.in {
+        top: 6%;
+    }
+}
+
+@media (max-height: 768px) and (max-width: 767px) {
+    .modal-custom.modal.fade.in {
+        top: 0%;
+    }
+}
+
+.modal-custom {
+    width: 615px;
+}
+
+@media (max-width: 767px) {
+    .modal-custom {
+        width: auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+    .modal-custom {
+        width: 505px;
+        left: 54%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modal-custom {
+        width: 735px;
+        left: 43%;
+    }
+}
+
+#modal-references, #modal-share, #modal-review, #modal-versions, #modal-detais {
+    top: 30%;
+}
+
+#modal-paper .modal-body {
+    max-height: 500px;
+}
+
+#modal-paper input[type="file"] {
+    line-height: 0px;
+}
+
+.control-group > .btn.rigth {
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+
+.table.table-bordered {
+    margin-top: 20px;
+}
+
+.paper-radio > input {
+    margin: 0px;
+}
+
+input[type="file"] {
+    line-height: 0px;
+}
+
+.note-table .selected {
+    background-color: #ececf0;
+}
+
+.note-table a {
+    cursor: pointer;
+}
+
+.marketing .span4 {
+    overflow-x: overlay;
+}
+
+.progress {
+    margin-bottom: 0px;
+}
+
+/*Datatable fix*/
+
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
+    cursor: pointer;
+    *cursor: hand;
+}
+
+table.table thead .sorting {
+    background: url('DataTables-1.9.4/media/images/sort_both.png') no-repeat center right;
+}
+
+table.table thead .sorting_asc {
+    background: url('DataTables-1.9.4/media/images/sort_asc.png') no-repeat center right;
+}
+
+table.table thead .sorting_desc {
+    background: url('DataTables-1.9.4/media/images/sort_desc.png') no-repeat center right;
+}
+
+table.table thead .sorting_asc_disabled {
+    background: url('DataTables-1.9.4/media/images/sort_asc_disabled.png') no-repeat center right;
+}
+
+table.table thead .sorting_desc_disabled {
+    background: url('DataTables-1.9.4/media/images/sort_desc_disabled.png') no-repeat center right;
+}
+
+
+/**/
+.bootstrapped-fine-uploader {
+    margin-top: 12px;
+}

@@ -1,0 +1,29 @@
+﻿@model String
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Afterlogin</title>
+    @Scripts.Render("~/bohr_js")
+   
+</head>
+<body>
+    <div>
+        @Html.Hidden("Email", (String)ViewBag.Email)
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            mixpanel.identify($("#Email").val());
+            mixpanel.track("Login", { },
+            function () {
+                window.location.href = "/Paper/Index";
+            })            
+        });
+    </script>
+</body>
+</html>

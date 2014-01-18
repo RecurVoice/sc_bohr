@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "User Settings";
+}
+
+@section Style {
+    @Styles.Render("~/profile_css")
+    @Styles.Render("~/m_styles_css")
+}
+
+
+@section Menu {
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </a>
+    <div class="menu nav-collapse">
+        <ul class="pull-right inline top-menu">
+            <li>
+                <a href="/write">
+                    <img src="/content/images/bohr/myPapers-icon-menu.png" alt="myPapers-icon" width="46" height="46" class="icon" />
+                    <span>Write</span>
+                </a>
+            </li>
+            <li>
+                <a href="/read">
+                    <img src="/content/images/bohr/myRefferences-icon-menu.png" alt="myRefferences-icon" width="46" height="46" class="icon" />
+                    <span>Read</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">What a nice day!</a>
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="tagline" id="">
+    <div class="row-fluid">
+        <div class="container">
+            <div class="span12">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Groups -->
+<div class="sect" id="">
+    <div class="row-fluid">
+        <div class="container">
+        </div>
+        <div class="container">
+            <div class="span8 offset2 ">
+                <div class="span12">
+                    <div class="research-group ">
+                        <h3>
+                            <div style="text-align:center;">
+                                <strong>
+                                    <font size="20px">Your settings </font>
+                                </strong>
+                            </div>
+                            <br>
+                            <br>
+                            Coming soon...
+                            Please check <a href="/about">our FAQ</a>
+                            <br>
+                            <strong> Have a nice day! </strong>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <p>
+                            </p>
+                        </h3>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal hide fade" id="modal">
+    <div class="modal-header">
+        <p>
+            <button class="close" data-dismiss="modal" type="button">&times;</button>
+        </p>
+    </div>
+
+    <div id="modal-content" class="modal-body">
+        <h3>How Do You Feel About Bohr?</h3>
+        <p>
+            <ul class="inline">
+                <li>
+                    <a href="#happy" onclick="replaceContent('modal-content', 'happy-content')">
+                        <img src="~/content/images/bohr/happy.png" alt="happy" width="113" height="113" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#sad" onclick="replaceContent('modal-content', 'sad-content')">
+                        <img src="~/content/images/bohr/sad.png" alt="sad" width="113" height="113" />
+                    </a>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<!-- Modal content replacement -->
+<div id="happy-content" style="display: none">
+    <h2>Great. Share This!</h2>
+    <ul class="inline share">
+        <li>
+            <a href="http://twitter.com/home?status= Must have research tool: bohr.ac by Bohr_research Check it out! ">
+                <img src="/content/images/bohr/tweet.png" alt="tweet" width="136" height="70" />
+            </a>
+        </li>
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=bohr.ac">
+                <img src="/content/images/bohr/share.png" alt="share" width="136" height="70" />
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="sad-content" style="display: none">
+    <h2>Bummer. How can we help?</h2>
+    @using (Html.BeginForm("Bummer", "Home", null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <fieldset>
+            <div class="row-fluid">
+                <textarea col="25" rows="10" placeholder="Type something..." name="body"></textarea>
+            </div>
+            <div class="row-fluid">
+                <button type="submit" class="m-btn black">SEND</button>
+            </div>
+        </fieldset>
+    }
+</div>
+
+@section Scripts{
+    <script>
+        /* Happy or Sad
+  ----------------------------------------------------------------------------------------------------*/
+        function replaceContent(target, source) {
+            document.getElementById(target).innerHTML = document.getElementById(source).innerHTML;
+        }
+    </script>
+}

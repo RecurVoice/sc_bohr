@@ -1,0 +1,111 @@
+/* General
+----------------------------------------------------------------------------------------------------*/
+#home-tagline {
+	background: #ea5b58;
+	color: #fff;
+	text-align: center;
+	padding: 15px 0;
+}
+
+#home-tagline h1 {
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 36px;
+}
+
+p.welcome {
+	font-weight: 700;
+	text-transform: uppercase;
+	padding-top: 25px;
+	color: #868686;
+}
+
+#home-sect {
+padding: 5%;
+background-size: cover;
+}
+
+/* My Papers & My Refferences Settings
+----------------------------------------------------------------------------------------------------*/
+
+#myPapers, #myRefferences {
+	background: #fff;
+	text-align: center;
+	padding: 25px;
+	cursor: pointer;
+	border : 1px solid white;
+}
+
+#myPapers:hover {
+	border:1px solid #fec900;
+}
+
+#myRefferences:hover {
+	border:1px solid #3ecae3;
+}
+
+
+#myPapers p, #myRefferences p {
+	color: #868686;
+	padding: 10px 0;
+}
+
+#myPapers-icon {
+	-webkit-border-radius: 50px;
+	-webkit-background-clip: padding-box;
+	border-radius: 50px;
+	background: #fec900;
+	display: block;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	width: 100px;
+	margin: 0 auto;
+}
+
+.myRefferences-btn {
+	background: #3ecae3;
+	display: block;
+	-webkit-border-radius: 10px;
+	-webkit-background-clip: padding-box;
+	border-radius: 10px;
+	border: 0;
+	margin: 0 auto;
+	color: #fff;
+	font-weight: 700;
+	padding: 16px;
+}
+
+#myRefferences-icon {
+	-webkit-border-radius: 50px;
+	-webkit-background-clip: padding-box;
+	border-radius: 50px;
+	background: #3ecae3;
+	display: block;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	width: 100px;
+	margin: 0 auto;
+}
+
+.myPapers-btn {
+	background: #fec900;
+	display: block;
+	-webkit-border-radius: 10px;
+	-webkit-background-clip: padding-box;
+	border-radius: 10px;
+	border: 0;
+	margin: 0 auto;
+	color: #fff;
+	font-weight: 700;
+	padding: 16px;
+}
+
+/* Media Query
+----------------------------------------------------------------------------------------------------*/
+@media (max-width: 700px) {
+    #myPapers {
+        margin-bottom: 10px;
+    }
+}

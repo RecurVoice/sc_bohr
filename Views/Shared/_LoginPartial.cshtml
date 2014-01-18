@@ -1,0 +1,12 @@
+﻿@using MVP.WebUI
+@if (Request.IsAuthenticated)
+{
+     <p class="text-right welcome">
+        Welcome!  <a href="@Url.Action("UserSettings", "Home")">@User.Identity.Name</a> <a href="@Url.Action("LogOff", "Account")">Log Off</a>
+    </p>  
+}
+else
+{
+    @Html.ActionLink("Register", "Register", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "registerLink" })
+    @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+}

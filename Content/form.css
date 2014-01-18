@@ -1,0 +1,137 @@
+/* General
+----------------------------------------------------------------------------------------------------*/
+#form-tagline {
+	background: #ea5b58;
+	color: #fff;
+	text-align: center;
+	padding: 0;
+}
+
+#form-tagline h1 {
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 35px;
+}
+
+#form-tagline p {
+  	font-size: 16px;
+}
+
+#form-sect {
+	padding: 50px 20px;
+}
+
+/* Form
+----------------------------------------------------------------------------------------------------*/
+
+form {
+	padding-left: 60px;
+}
+
+.m-btn {
+	margin: 0;
+    font-size: 18px;
+}
+
+.next, .upload {
+	padding: 20px 45px;
+}
+
+.form-horizontal .control-label {
+    font-size: 18px;
+}
+
+button, input[type="text"], textarea {
+    margin: 0px;
+    font-size: 18px;
+    padding: 15px 6px;
+}
+
+select {
+    margin: 0px;
+    font-size: 18px;
+    padding: 10px;
+    height: 52px;
+}
+
+
+/* Hack label to make it look like vertically aligned with the input */
+.control-label.academic-title {
+	padding-top: 15px;
+}
+
+.control-label.affiliation {
+	padding-top: 15px;
+}
+
+
+/* Modal Box
+----------------------------------------------------------------------------------------------------*/
+body .modal {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    z-index: 1050;
+    width: 770px;
+    margin-left: -385px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 0 none;
+    outline: 0px none;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
+    background-clip: padding-box;
+}
+
+.modal-header .close {
+    margin-top: 15px;
+}
+
+.accordion-group {
+	border: 0 none;
+	padding: 15px 0;
+}
+
+.accordion-heading .accordion-toggle {
+    display: inline;
+    padding: 20px 15px;
+}
+
+.accordion-heading-title {
+	font-size: 18px;
+}
+
+.accordion-inner {
+    padding: 9px 15px;
+    border-top: 0 none;
+    border-bottom: 1px solid rgb(229, 229, 229);
+}
+
+#modal-upload-end {
+    padding: 20px 15px 5px;
+    text-align: center;
+}
+
+
+/* Modal Box Media Query
+----------------------------------------------------------------------------------------------------*/
+@media (min-width:320px) and (max-width: 768px) {
+    body .modal {
+        width: 80%; /* desired relative width */
+        margin-left:-40%; /* -(width/2) */
+        position: absolute;
+        margin-top: 60%;
+    }
+    
+    #modal-mendeley-content,
+    #modal-zotero-content {
+        overflow-x: hidden;
+    }
+    
+    .accordion-heading-title {
+		font-size: 16px;
+	}
+    
+	form {
+		padding-left: 20px;
+	}
+}

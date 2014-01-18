@@ -1,0 +1,367 @@
+﻿@model  MVP.WebUI.Models.PapersVM
+@using MVP.Core.Entities.Db;
+@using MVP.WebUI.Infrastructure.HtmlHelpers;
+@{
+    ViewBag.Title = "Papers";
+}
+
+@section Style {
+
+
+    @Styles.Render("~/profile_css")
+    @Styles.Render("~/read_css")
+    @Styles.Render("~/m_styles_css")
+    @Styles.Render("~/styles_s_css")
+    @Styles.Render("~/font-awesome_css")
+
+}
+
+@section Menu {
+    @Html.Partial("_MenuPartial2")
+}
+
+
+<header id="subhead" class="mypapers">
+    <div class="container">
+        <h1>My Papers</h1>
+        @using (Html.BeginForm("Index", "Paper", FormMethod.Get, new { id = "search" }))
+        {
+            <div class="input-append">
+                <input class="span2" id="inputIcon" name="search" type="text" placeholder="Search" value="@ViewBag.search">
+                <button class="add-on" type="submit"><i class=" icon-search"></i></button>
+                @*<span class="add-on"><i class="icon-search"></i></span>*@
+            </div>
+        }
+
+    </div>
+</header>
+
+<div id="content">
+
+    <div class="container">
+
+        <div id="single-mode" class="tab-pane active">
+            <div class="row">
+                <div class="span12 subtitle">
+                    <h1>What paper are you writing?</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    <div class="title clearfix">
+                        <h2 class="pull-left">Journal Paper</h2>
+                        <a id="journal-add" href="#modal-paper" role="button" data-toggle="modal" class="btn  btn-primary pull-rigth modal-paper">Add<i class="icon-plus"></i></a>
+                    </div>
+                    @Html.Partial("_PaperTable", Model.Journals.Where(x => !x.FinishedStatus))
+                    @Html.Partial("_PaperTable", Model.Journals.Where(x => x.FinishedStatus))
+
+
+
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    <div class="title clearfix">
+                        <h2 class="pull-left">Conferences Paper</h2>
+                        @*<a href="#" class="btn btn-small btn-primary pull-right">Add <i class="icon-plus"></i></a>*@
+                        <a id="conference-add" href="#modal-paper" role="button" data-toggle="modal" class="btn btn-primary  pull-rigth modal-paper">Add<i class="icon-plus"></i></a>
+                    </div>
+                    @Html.Partial("_PaperTable", Model.Conferences.Where(x => !x.FinishedStatus))
+                    @Html.Partial("_PaperTable", Model.Conferences.Where(x => x.FinishedStatus))
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    <div class="title clearfix">
+                        <h2 class="pull-left">Book Chapter</h2>
+                        @*   <a href="#" class="btn btn-small btn-primary pull-right">Add <i class="icon-plus"></i></a>*@
+                        <a id="book-add" href="#modal-paper" role="button" data-toggle="modal" class="btn btn-primary  pull-rigth modal-paper">Add<i class="icon-plus"></i></a>
+                    </div>
+                    @Html.Partial("_PaperTable", Model.Books.Where(x => !x.FinishedStatus))
+                    @Html.Partial("_PaperTable", Model.Books.Where(x => x.FinishedStatus))
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    <div class="title clearfix">
+                        <h2 class="pull-left">Research Proposal</h2>
+                        @*  <a href="#" class="btn btn-small btn-primary pull-right">Add <i class="icon-plus"></i></a>*@
+                        <a id="research-add" href="#modal-paper" role="button" data-toggle="modal" class="btn btn-primary  pull-rigth modal-paper">Add<i class="icon-plus"></i></a>
+                    </div>
+                    @Html.Partial("_PaperTable", Model.Research.Where(x => !x.FinishedStatus))
+                    @Html.Partial("_PaperTable", Model.Research.Where(x => x.FinishedStatus))
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    <div class="title clearfix">
+                        <h2 class="pull-left">PHD Proposal</h2>
+                        @*       <a href="#" class="btn btn-small btn-primary pull-right">Add <i class="icon-plus"></i></a>*@
+                        <a id="PhDchapter-add" href="#modal-paper" role="button" data-toggle="modal" class="btn btn-primary  pull-rigth modal-paper">Add<i class="icon-plus"></i></a>
+                    </div>
+                    @Html.Partial("_PaperTable", Model.PhDchapter.Where(x => !x.FinishedStatus))
+                    @Html.Partial("_PaperTable", Model.PhDchapter.Where(x => x.FinishedStatus))
+                </div>
+            </div>
+
+        </div>
+
+        <div id="team-mode" class="tab-pane">
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+
+<div id="modal-paper" class="modal hide fade " tabindex="-1" role="dialog" aria-labelledby="modal-paper-label" aria-hidden="true">
+    @using (Html.BeginForm("Index", "Paper", null, FormMethod.Post, new { @class = "form-horizontal add-new-paper-form ", enctype = "multipart/form-data" }))
+    {
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="modal-paper-label"></h3>
+        </div>
+        <div class="custom-body">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.PaperType)
+            @*@Html.ValidationSummary(false)*@
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.PaperName, new { @class = "control-label " })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.PaperName)
+                    @Html.ValidationMessageFor(m => m.PaperName)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.DeadlineAbstract, new { @class = "control-label " })
+                <div class="controls">
+                    <div class="input-append date" id="dp1" data-date="" data-date-format="dd.mm.yyyy">
+                        @Html.TextBoxFor(m => m.DeadlineAbstract, new { @class = " startdate greterThenNow", size = "16" })
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                        @Html.ValidationMessageFor(m => m.DeadlineAbstract)
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.DeadlineFull, new { @class = "control-label" })
+                <div class="controls">
+                    <div class="input-append date" id="dp2" data-date="" data-date-format="dd.mm.yyyy">
+                        @Html.TextBoxFor(m => m.DeadlineFull, new { @class = " enddate greterThenNow", size = "16" })
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                        @Html.ValidationMessageFor(m => m.DeadlineFull)
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Name, new { @class = "control-label Name" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class=" paper-radio control-label">
+                    Paper*
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                    File
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                    Link
+                </label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Paperlink, new { @class = " hidden" })
+                    <input type="file" class="paper " name="PaperFile" id="PaperFile" />
+                    @Html.HiddenFor(x => x.Paper)
+                    @Html.ValidationMessageFor(m => m.Paper)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Templates, new { @class = "control-label " })
+                <div class="controls">
+                    <input type="file" accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf" multiple="multiple" class="span4 templates" name="Templates" />
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Attachements, new { @class = "control-label " })
+                <div class="controls">
+                    <input type="file" multiple="multiple" class="span4 attachements" name="Attachements" />
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Keywords, new { @class = "control-label " })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Keywords, new { @class = "" })
+                    @Html.ValidationMessageFor(m => m.Keywords)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Website, new { @class = "control-label Website" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Website, new { @class = "" })
+                    @Html.ValidationMessageFor(m => m.Website)
+                </div>
+            </div>
+            @* <div class="control-group">
+                    @Html.LabelFor(m => m.Share, new { @class = "control-label span3" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.Share, new { @class = "span4" })
+                        @Html.ValidationMessageFor(m => m.Share)
+                    </div>
+                </div>*@
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary add-new-paper-click" type="button">Add</button>
+        </div>
+    }
+</div>
+
+<div id="modal-revision" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    @using (Html.BeginForm("AddRevision", "Paper", null, FormMethod.Post, new { @class = "form-horizontal submit-add-revision-form", enctype = "multipart/form-data" }))
+    {
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Paper Revisions</h3>
+        </div>
+        <div class="custom-body">
+            <table id="versions-table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Version</th>
+                        <th>User</th>
+                        <th>Size</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <input type="hidden" class="paperId" name="Id" value="" />
+            <input class=" pull-left" name="revisionFile" type="file" value="">
+
+            @*<input type="file" class="pull-left">*@
+            <input type="button" class="btn btn-primary btn-small pull-right submit-add-revision-click" value="Add new revision">
+        </div>
+
+    }
+</div>
+
+<div id="modal-details" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    @using (Html.BeginForm("SaveDetails", "Paper", null, FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Paper Details</h3>
+        </div>
+        <div class="custom-body">
+            @Html.AntiForgeryToken()
+            @*@Html.ValidationSummary(false)*@
+            @Html.HiddenFor(m => m.Id, new { @class = "paperId" })
+
+            <div class="control-group">
+
+                @Html.LabelFor(m => m.PaperName, new { @class = "control-label " })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.PaperName, new { id = "paperNameedit" })
+                    @Html.ValidationMessageFor(m => m.PaperName)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Templates, new { @class = "control-label " })
+                <div class="controls templates">
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Attachements, new { @class = "control-label " })
+                <div class="controls attachements">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Journal Website </label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Website, new { id = "websiteedit" })
+                    @Html.ValidationMessageFor(m => m.Website)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Keyword</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Keywords, new { id = "paperKeywordsedit" })
+                    @Html.ValidationMessageFor(m => m.Keywords)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Deadline abstract</label>
+                <div class="controls">
+                    <div class="input-append date" id="dp3" data-date-format="dd.mm.yyyy">
+                        @Html.TextBoxFor(m => m.DeadlineAbstract, new { id = "abstractdateEdit", @class = " startdate2 greterThenNow", })
+                        <span class="add-on"><span class="icon-calendar"></span></span>
+                        @Html.ValidationMessageFor(m => m.DeadlineAbstract)
+                    </div>
+
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Deadline full paper</label>
+                <div class="controls">
+                    <div class="input-append date" id="dp4" data-date-format="dd.mm.yyyy">
+                        @Html.TextBoxFor(m => m.DeadlineFull, new { id = "fulldateEdit", @class = " enddate2 greterThenNow" })
+                        <span class="add-on"><span class="icon-calendar"></span></span>
+                        @Html.ValidationMessageFor(m => m.DeadlineFull)
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <div class="modal-footer clearfix">
+            <input type="submit" class="pull-right btn btn-small btn-primary" value="Save">
+        </div>
+    }
+</div>
+
+<div id="modal-review" class="modal hide fade">
+    @using (Html.BeginForm("SaveReview", "Paper", null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Reviews</h3>
+        </div>
+        <div class="custom-body">
+            <input type="hidden" class="paperId" name="Id" value="" />
+            <textarea id="review" name="Review" rows="10" cols="20"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    }
+</div>
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/Datatable_scripts")
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js"></script>
+@*<script type="text/javascript" src="/Scripts/Libs/jquery.autocomplete.js"></script>*@
+    <script type="text/javascript" src="/Scripts/App/PaperIndex.js"></script>
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            ignore: ""
+        })
+    </script>
+}
+
+@* -------El'fik Page-----*@
